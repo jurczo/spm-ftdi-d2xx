@@ -2,7 +2,7 @@ module FTDI {
     umbrella header "shim.h"
     export *
     module * { export * }
-    link "ftd2xx"
+    //link "ftd2xx"
 }
 
 // module * { export * }

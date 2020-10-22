@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "FTDI",
     products: [
-        .library(name: "FTDI", targets: ["FTDI"]),
+        .library(name: "FTDI", type: .dynamic, targets: ["FTDI"]),
     ],
     dependencies: [],
     targets: [
