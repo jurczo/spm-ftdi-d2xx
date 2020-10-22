@@ -1,5 +1,8 @@
 # FTDI D2xx wrapper
 
+> As the wrapper had linker issues for now, it is converted into Framework
+> with the plans to return back to pure Swift PM after some investigation.
+
 Swift PM wrapper around the FTDI D2xx driver. 
 
 Example usage:
