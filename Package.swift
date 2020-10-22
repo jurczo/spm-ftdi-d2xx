@@ -14,7 +14,8 @@ let package = Package(
         .target(
 		name: "FTDI",
 		dependencies: [],
-		resources: [.process("FTDI/lib")]
+		resources: [.process("FTDI/lib")],
+		linkerSettings: [.unsafeFlags(["-LSources/FTDI/lib"])]
 	),
         .testTarget(name: "FTDITests", dependencies: ["FTDI"]),
     ]

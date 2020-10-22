@@ -11,28 +11,110 @@ extension String {
 }
 
 final class FTDITests: XCTestCase {
-    func testExample() {
-        var count : DWORD = 0
-        var status = FT_CreateDeviceInfoList(&count)
-        guard status == FT_OK else {
-            XCTFail("\(String(describing: FTDINativeError.init(rawValue: status)))")
-            return
+    func testListDevices() {
+        do {
+            let list = try availableDevices()
+            print(list)
+        } catch {
+            print(error)
+            XCTFail()
         }
+    }
 
-        guard count > 0 else {
-            XCTFail("No FTDI devices present for testing. Aborting!")
-            return
+    func testListDeviceCandidates() {
+        do {
+            let list = try availableCandidates()
+            print(list)
+        } catch {
+            print(error)
+            XCTFail()
         }
+    }
 
-        var devs = [FT_DEVICE_LIST_INFO_NODE](repeating: .init(), count: Int(count))
-        status = FT_GetDeviceInfoList(&devs, &count)
-        guard status == FT_OK else {
-            XCTFail("\(String(describing: FTDINativeError.init(rawValue: status)))")
-            return
+    func testOpenDeviceSerial() {
+        do {
+            guard let serial = try availableCandidates().first?.serialNumber else {
+                XCTFail()
+                return
+            }
+            let handle = try open(using: .serialNumber, value: serial)
+            try close(handle)
+        } catch {
+            print(error)
+            XCTFail()
         }
+    }
 
-        for dev in devs {
-            print ("\(String.from(cTuple: dev.SerialNumber))")
+    func testOpenDeviceDescription() {
+        //FIXME: Posibility to open device by description
+        return
+//        do {
+//            guard let value = try availableCandidates().first?.desc else {
+//                XCTFail()
+//                return
+//            }
+//            let handle = try open(using: .description, value: value)
+//            try close(handle)
+//        } catch {
+//            print(error)
+//            XCTFail()
+//        }
+    }
+
+    func testOpenDeviceId() {
+        //FIXME: Posibility to open device by (Loc)ID
+        return
+//        do {
+//            guard let value = try availableCandidates().first?.locid else {
+//                XCTFail()
+//                return
+//            }
+//            let handle = try open(using: .location, value: value)
+//            try close(handle)
+//        } catch {
+//            print(error)
+//            XCTFail()
+//        }
+    }
+
+    func testDeviceRuntimeInfo() {
+        do {
+            guard let serial = try availableCandidates().first?.serialNumber else {
+                XCTFail()
+                return
+            }
+            let handle = try open(using: .serialNumber, value: serial)
+            let info = try describe(handle)
+            print(info)
+            try close(handle)
+        } catch {
+            print(error)
+            XCTFail()
+        }
+    }
+
+    func testManualButtonPressed() {
+        do {
+            guard let serial = try availableCandidates().first?.serialNumber else {
+                XCTFail()
+                return
+            }
+            let handle = try open(using: .serialNumber, value: serial)
+
+            for _ in 0 ... 3 {
+                try readAsync(handle) {
+                    print(decode(modemStatus: $0))
+                    XCTAssert(true)
+                } onNewData: {
+                    print($0)
+                    XCTAssert(true)
+                }
+            }
+
+            try close(handle)
+        } catch {
+            print(error)
+            XCTFail()
         }
     }
 }

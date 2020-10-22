@@ -4,16 +4,27 @@ Swift PM wrapper around the FTDI D2xx driver.
 
 Example usage:
 ```swift
-var count : DWORD = 0
+import FTDI
 
-var status = FT_CreateDeviceInfoList(&count)
-guard status == FT_OK else { fatalError() }
-guard count > 0 else { fatalError() }
+let candidates = try! FTDI.availableCandidates()
+guard let serial = candidates.first?.serialNumber else {
+   fatalError()
+}
+guard let handle = try? FTDI.open(using: .serialNumber, value: serial) else {
+   fatalError()
+}
 
-var devs = [FT_DEVICE_LIST_INFO_NODE](repeating: .init(), count: Int(count))
-
-status = FT_GetDeviceInfoList(&devs, &count)
-guard status == FT_OK else { fatalError() }
-
-for dev in devs { /* eg print(String(describing: dev.SerialNumber)) */ }
+do {
+   try configure(handle, using: Configuration())
+   let info = try describe(handle)
+   print(info)
+   
+   try write(handle, string: "Hello, world!")
+   let data = try read(handle, length: 30)
+   
+   try close(handle)
+} catch {
+    print(error)
+    fatalError()
+}
 ```

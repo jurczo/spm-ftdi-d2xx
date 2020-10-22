@@ -1,6 +1,7 @@
 module FTDI {
     umbrella header "shim.h"
     export *
-    //module * { export * }
+    module * { export * }
+    link framework "Foundation"
     link "ftd2xx"
 }
