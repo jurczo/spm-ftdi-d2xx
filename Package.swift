@@ -5,12 +5,17 @@ import PackageDescription
 
 let package = Package(
     name: "FTDI",
+    platforms: [ .macOS("10.13") ],
     products: [
         .library(name: "FTDI", type: .dynamic, targets: ["FTDI"]),
     ],
     dependencies: [],
     targets: [
-        .target(name: "FTDI", dependencies: [], linkerSettings: [.unsafeFlags(["-LSources/FTDI/lib"])]),
+        .target(
+		name: "FTDI",
+		dependencies: [],
+		resources: [.process("FTDI/lib")]
+	),
         .testTarget(name: "FTDITests", dependencies: ["FTDI"]),
     ]
 )

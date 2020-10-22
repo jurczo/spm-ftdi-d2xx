@@ -35,8 +35,4 @@ final class FTDITests: XCTestCase {
             print ("\(String.from(cTuple: dev.SerialNumber))")
         }
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
