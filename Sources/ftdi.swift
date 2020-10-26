@@ -167,13 +167,15 @@ private func isModemEvent(_ event : DWORD) -> Bool {
     return (event & DWORD(FT_EVENT_MODEM_STATUS)) == DWORD(FT_EVENT_MODEM_STATUS)
 }
 
-
-public func readAsync(_ handle : FT_HANDLE, onModemStatusChanged: ModemStatusHandler? = nil, onNewData: ReadDataHandler? = nil) throws {
-    var eh : EVENT_HANDLE = .init()
+public func bootstrap(event eh: inout EVENT_HANDLE) {
     pthread_mutex_init(&eh.eMutex, nil)
     pthread_cond_init(&eh.eCondVar, nil)
+}
+
+public func readSync(_ handle : FT_HANDLE, eventHandle eh: inout EVENT_HANDLE, onModemStatusChanged: ModemStatusHandler? = nil, onNewData: ReadDataHandler? = nil) throws {
 
     let mask : DWORD = .init(FT_EVENT_RXCHAR | FT_EVENT_MODEM_STATUS) //  | FT_EVENT_LINE_STATUS
+    //FT_DEFAULT_RX_TIMEOUT
     var status = FT_SetEventNotification(handle, mask, &eh)
     guard status == FT_OK else { throw FTDIError.raw(ftdiCode: status) }
 

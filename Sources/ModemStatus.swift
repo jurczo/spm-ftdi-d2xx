@@ -5,8 +5,8 @@
 //
 
 public struct ModemStatus {
-    let cts : Bool
-    let dsr : Bool
-    let ring : Bool
-    let rlsd : Bool
+    public let cts : Bool
+    public let dsr : Bool
+    public let ring : Bool
+    public let rlsd : Bool
 }

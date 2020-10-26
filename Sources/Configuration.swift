@@ -9,12 +9,14 @@
 //
 
 public struct Configuration {
-    let flow     : FTDIFlow     = .none
-    let baudrate : FTDIBaudrate = .baud9600
-    let bits     : FTDIBits     = .bits8
-    let parity   : FTDIParity   = .none
-    let stopBits : FTDIStopBits = .one
+    public let flow     : FTDIFlow     = .none
+    public let baudrate : FTDIBaudrate = .baud9600
+    public let bits     : FTDIBits     = .bits8
+    public let parity   : FTDIParity   = .none
+    public let stopBits : FTDIStopBits = .one
 
-    let rts : Bool = false
-    let dtr : Bool = true
+    public let rts : Bool = false
+    public let dtr : Bool = true
+
+    public init() {}
 }

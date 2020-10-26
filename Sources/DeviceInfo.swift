@@ -6,8 +6,8 @@
 //
 
 public struct DeviceRuntimeInfo {
-    let serialNumber : String
-    let `description` : String
-    let type : FTDIDeviceType
-    let id : DWORD
+    public let serialNumber : String
+    public let `description` : String
+    public let type : FTDIDeviceType
+    public let id : DWORD
 }

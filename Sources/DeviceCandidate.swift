@@ -7,12 +7,12 @@
 //
 
 public struct DeviceCandidate {
-    let flags : Int
-    let type : FTDIDeviceType
-    let devID : Int
-    let locid : Int
-    let serialNumber : String
-    let desc : String
+    public let flags : Int
+    public let type : FTDIDeviceType
+    public let devID : Int
+    public let locid : Int
+    public let serialNumber : String
+    public let desc : String
 }
 
 public extension DeviceCandidate {

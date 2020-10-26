@@ -109,3 +109,10 @@ typedef NS_CLOSED_ENUM(uint32_t, FTDINativeError) {
     FTDINativeErrorOther                    = FT_OTHER_ERROR,
     FTDINativeErrorDeviceListNotRead        = FT_DEVICE_LIST_NOT_READY,
 };
+
+typedef NS_CLOSED_ENUM(uint32_t, FTDILineStatus) {
+    FTDILineStatusOE = 0x02,
+    FTDILineStatusPE = 0x04,
+    FTDILineStatusFE = 0x08,
+    FTDILineStatusBI = 0x10,
+};

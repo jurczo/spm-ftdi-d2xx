@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		B51DD92525422625007E347C /* shim.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* shim.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B51DD92925422627007E347C /* ftd2xx.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* ftd2xx.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B51DD92D25422632007E347C /* WinTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* WinTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B51DD93125422635007E347C /* FTDI+Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* FTDI+Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B591D7392541D5230076615E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591D72E2541D40D0076615E /* Errors.swift */; };
 		B591D73D2541D5300076615E /* ftdi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591D7292541D3540076615E /* ftdi.swift */; };
 		B591D7502541D6350076615E /* FTDI+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = B591D7412541D55C0076615E /* FTDI+Type.swift */; };
@@ -68,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B51DD95925422E6F007E347C /* FTDI.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = FTDI.modulemap; sourceTree = "<group>"; };
 		B591D6F72541CC350076615E /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftd2xx.1.4.16.dylib; path = Sources/FTDI/lib/libftd2xx.1.4.16.dylib; sourceTree = "<group>"; };
 		B591D6FE2541CD010076615E /* libftd2xx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libftd2xx.a; path = Sources/FTDI/lib/libftd2xx.a; sourceTree = "<group>"; };
 		B591D71F2541D17C0076615E /* libftd2xx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libftd2xx.a; sourceTree = "<group>"; };
@@ -86,7 +91,6 @@
 		OBJ_13 /* ftd2xx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		OBJ_14 /* FTDI+Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FTDI+Swift.h"; sourceTree = "<group>"; };
 		OBJ_15 /* WinTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
-		OBJ_16 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = "/Users/cre8iveu/Documents/projekty.nosync/apollon/APRemoteControlModule/Libraries/FTDI@D2xx/Sources/FTDI/include/module.modulemap"; sourceTree = "<group>"; };
 		OBJ_19 /* FTDITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTDITests.swift; sourceTree = "<group>"; };
 		OBJ_24 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -137,7 +141,7 @@
 			children = (
 				OBJ_11 /* shim.h */,
 				OBJ_12 /* FTDI */,
-				OBJ_16 /* module.modulemap */,
+				B51DD95925422E6F007E347C /* FTDI.modulemap */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -218,11 +222,26 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B51DD92425422621007E347C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B51DD92525422625007E347C /* shim.h in Headers */,
+				B51DD92925422627007E347C /* ftd2xx.h in Headers */,
+				B51DD93125422635007E347C /* FTDI+Swift.h in Headers */,
+				B51DD92D25422632007E347C /* WinTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		"FTDI::FTDI" /* FTDI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_27 /* Build configuration list for PBXNativeTarget "FTDI" */;
 			buildPhases = (
+				B51DD92425422621007E347C /* Headers */,
 				OBJ_30 /* Sources */,
 				OBJ_32 /* Frameworks */,
 				B591D6FA2541CC350076615E /* Embed Libraries */,
@@ -354,7 +373,9 @@
 		OBJ_28 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -367,6 +388,7 @@
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
+				GCC_UNROLL_LOOPS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Sources/FTDI/include",
@@ -376,13 +398,15 @@
 					"$(inherited)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
 					"@loader_path/Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sources/FTDI/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MODULEMAP_FILE = Sources/FTDI/include/module.modulemap;
+				MODULEMAP_FILE = Sources/FTDI/include/FTDI.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -393,10 +417,12 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Source";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = FTDI;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				USE_HEADERMAP = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -404,7 +430,9 @@
 		OBJ_29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -417,6 +445,7 @@
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
+				GCC_UNROLL_LOOPS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Sources/FTDI/include",
@@ -426,13 +455,15 @@
 					"$(inherited)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
 					"@loader_path/Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sources/FTDI/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MODULEMAP_FILE = Sources/FTDI/include/module.modulemap;
+				MODULEMAP_FILE = Sources/FTDI/include/FTDI.modulemap;
+				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -443,9 +474,11 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Source";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = FTDI;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				USE_HEADERMAP = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
@@ -560,7 +593,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/Sources/FTDI/include/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
@@ -594,7 +627,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=$(SRCROOT)/Sources/FTDI/include/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
