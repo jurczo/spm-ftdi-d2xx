@@ -85,6 +85,7 @@
 		B591D76F2541E7D40076615E /* DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceInfo.swift; path = Sources/DeviceInfo.swift; sourceTree = "<group>"; };
 		B591D77B2541ED970076615E /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/Configuration.swift; sourceTree = "<group>"; };
 		B591D7912541F6260076615E /* ModemStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModemStatus.swift; path = Sources/ModemStatus.swift; sourceTree = "<group>"; };
+		B5C0EEA5254F747A00C98790 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		"FTDI::FTDI::Product" /* FTDI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FTDI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"FTDI::FTDITests::Product" /* FTDITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FTDITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* shim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shim.h; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
+				B5C0EEA5254F747A00C98790 /* LICENSE */,
 				OBJ_24 /* README.md */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,

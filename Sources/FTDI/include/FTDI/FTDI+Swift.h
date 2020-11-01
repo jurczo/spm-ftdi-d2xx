@@ -1,12 +1,5 @@
-//
-//  FTDI.h
-//
-//  Wrapper around the RAW types from D2xx driver in order to make them work
-//  properly in the Swift.
-//
-//  Created by Tomas Michalek on 22/09/2020.
-//  Copyright © 2020 Gatema a.s. All rights reserved.
-//
+// Copyright © 2020 Gatema a.s. All rights reserved.
+// See the file "LICENSE" for the full license governing this code.
 
 #pragma once
 @import Foundation;

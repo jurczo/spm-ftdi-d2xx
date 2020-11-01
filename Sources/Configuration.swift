@@ -1,12 +1,5 @@
-//
-//  Configuration.swift
-//  RemoteTester
-//
-//  Configuration structure for initialization of the USB FTDI device.
-//
-//  Created by Tomas Michalek on 13/10/2020.
-//  Copyright © 2020 Gatema a.s. All rights reserved.
-//
+// Copyright © 2020 Gatema a.s. All rights reserved.
+// See the file "LICENSE" for the full license governing this code.
 
 public struct Configuration {
     public let flow     : FTDIFlow     = .none

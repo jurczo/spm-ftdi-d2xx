@@ -1,10 +1,5 @@
-//
-//  FTDI+Type.swift
-//  RemoteTester
-//
-//  Created by Tomas Michalek on 13/10/2020.
-//  Copyright © 2020 Gatema a.s. All rights reserved.
-//
+// Copyright © 2020 Gatema a.s. All rights reserved.
+// See the file "LICENSE" for the full license governing this code.
 
 import Foundation
 

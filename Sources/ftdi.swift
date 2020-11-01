@@ -1,13 +1,9 @@
-//
-//  ftdi.swift
-//  FTDI
-//
-//  Created by Tomas Michalek on 22/10/2020.
-//
+// Copyright © 2020 Gatema a.s. All rights reserved.
+// See the file "LICENSE" for the full license governing this code.
 
 import Foundation
 
-//MARK: Discovery
+//MARK: - Discovery
 
 public func availableCandidates() throws -> [DeviceCandidate] {
     var count : DWORD = 0
@@ -128,9 +124,14 @@ public func configure(_ handle: FT_HANDLE, using configuration: Configuration) t
 public func write(_ handle: FT_HANDLE, bytes: Any, length: Int) throws {
     var written : DWORD = 0
     var mutableBytes = bytes
-    let status = FT_Write(handle, &mutableBytes, DWORD(length), &written)
 
+    //TODO: Is it needed (it is shown in example from FTDI)
+    try? set(handle, rts: true) // Signal intent to send data to remote host
+
+    let status = FT_Write(handle, &mutableBytes, DWORD(length), &written)
     guard status == FT_OK else { throw FTDIError.raw(ftdiCode: status) }
+
+
     guard length == written else { throw FTDIError.invalidWrite }
 }
 
@@ -205,11 +206,11 @@ public func readSync(_ handle : FT_HANDLE, eventHandle eh: inout EVENT_HANDLE, o
 }
 
 public func decode(modemStatus state: DWORD) -> ModemStatus {
-    let cts = ((state & MS_CTS_ON) == MS_CTS_ON)
-    let dsr = ((state & MS_DSR_ON) == MS_DSR_ON)
+    let cts = !((state & MS_CTS_ON) == MS_CTS_ON)
+    let dsr = !((state & MS_DSR_ON) == MS_DSR_ON)
 
-    let ri = ((state & MS_RING_ON) == MS_RING_ON)
-    let rlsd = ((state & MS_RLSD_ON) == MS_RLSD_ON)
+    let ri = !((state & MS_RING_ON) == MS_RING_ON)
+    let rlsd = !((state & MS_RLSD_ON) == MS_RLSD_ON)
 
     return ModemStatus(cts: cts, dsr: dsr, ring: ri, rlsd: rlsd)
 }
