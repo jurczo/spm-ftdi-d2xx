@@ -195,6 +195,7 @@
 				B591D6F62541CC340076615E /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
@@ -296,6 +297,7 @@
 			attributes = {
 				LastSwiftMigration = 9999;
 				LastUpgradeCheck = 9999;
+				ORGANIZATIONNAME = "Gatema Medical s.r.o.";
 				TargetAttributes = {
 					"FTDI::FTDI" = {
 						DevelopmentTeam = WJ46M2X8E8;

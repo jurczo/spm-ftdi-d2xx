@@ -1,4 +1,4 @@
-// Copyright © 2020 Gatema a.s. All rights reserved.
+// Copyright © 2020 Tomáš Michalek
 // See the file "LICENSE" for the full license governing this code.
 
 public struct DeviceCandidate {

@@ -1,4 +1,4 @@
-// Copyright © 2020 Gatema a.s. All rights reserved.
+// Copyright © 2020 Tomáš Michalek
 // See the file "LICENSE" for the full license governing this code.
 
 import Foundation
@@ -85,26 +85,14 @@ func set(_ handle: FT_HANDLE, bits: FTDIBits, stops: FTDIStopBits, parity: FTDIP
 }
 
 func set(_ handle: FT_HANDLE, dtr: Bool) throws {
-    let status : FT_STATUS
-    if dtr {
-        status = FT_SetDtr(handle)
-    } else {
-        status = FT_ClrDtr(handle)
-    }
-
+    let status = dtr ? FT_SetDtr(handle) : FT_ClrDtr(handle)
     guard status == FT_OK else {
         throw FTDIError.raw(ftdiCode: status)
     }
 }
 
 func set(_ handle: FT_HANDLE, rts: Bool) throws {
-    let status : FT_STATUS
-    if rts {
-        status = FT_SetRts(handle)
-    } else {
-        status = FT_ClrRts(handle)
-    }
-
+    let status = rts ? FT_SetRts(handle) : FT_ClrRts(handle)
     guard status == FT_OK else {
         throw FTDIError.raw(ftdiCode: status)
     }
@@ -130,7 +118,6 @@ public func write(_ handle: FT_HANDLE, bytes: Any, length: Int) throws {
 
     let status = FT_Write(handle, &mutableBytes, DWORD(length), &written)
     guard status == FT_OK else { throw FTDIError.raw(ftdiCode: status) }
-
 
     guard length == written else { throw FTDIError.invalidWrite }
 }
@@ -208,9 +195,8 @@ public func readSync(_ handle : FT_HANDLE, eventHandle eh: inout EVENT_HANDLE, o
 public func decode(modemStatus state: DWORD) -> ModemStatus {
     let cts = !((state & MS_CTS_ON) == MS_CTS_ON)
     let dsr = !((state & MS_DSR_ON) == MS_DSR_ON)
-
-    let ri = !((state & MS_RING_ON) == MS_RING_ON)
+    let ring = !((state & MS_RING_ON) == MS_RING_ON)
     let rlsd = !((state & MS_RLSD_ON) == MS_RLSD_ON)
 
-    return ModemStatus(cts: cts, dsr: dsr, ring: ri, rlsd: rlsd)
+    return ModemStatus(cts: cts, dsr: dsr, ring: ring, rlsd: rlsd)
 }
