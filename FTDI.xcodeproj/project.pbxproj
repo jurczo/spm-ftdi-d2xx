@@ -76,7 +76,6 @@
 		B591D6F72541CC350076615E /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libftd2xx.1.4.16.dylib; path = Sources/FTDI/lib/libftd2xx.1.4.16.dylib; sourceTree = "<group>"; };
 		B591D6FE2541CD010076615E /* libftd2xx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libftd2xx.a; path = Sources/FTDI/lib/libftd2xx.a; sourceTree = "<group>"; };
 		B591D71F2541D17C0076615E /* libftd2xx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libftd2xx.a; sourceTree = "<group>"; };
-		B591D7202541D17C0076615E /* libftd2xx.1.4.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.4.16.dylib; sourceTree = "<group>"; };
 		B591D7292541D3540076615E /* ftdi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ftdi.swift; path = Sources/ftdi.swift; sourceTree = "<group>"; };
 		B591D72E2541D40D0076615E /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Errors.swift; sourceTree = "<group>"; };
 		B591D7412541D55C0076615E /* FTDI+Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FTDI+Type.swift"; sourceTree = "<group>"; };
@@ -132,7 +131,6 @@
 			children = (
 				B591D7542541DD010076615E /* libftd2xx.dylib */,
 				B591D71F2541D17C0076615E /* libftd2xx.a */,
-				B591D7202541D17C0076615E /* libftd2xx.1.4.16.dylib */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -300,7 +298,6 @@
 				ORGANIZATIONNAME = "Gatema Medical s.r.o.";
 				TargetAttributes = {
 					"FTDI::FTDI" = {
-						DevelopmentTeam = WJ46M2X8E8;
 						LastSwiftMigration = 1210;
 						ProvisioningStyle = Automatic;
 					};
@@ -384,7 +381,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = WJ46M2X8E8;
+				DEVELOPMENT_TEAM = BZF32VC6NQ;
 				DYLIB_COMPATIBILITY_VERSION = 1.4.0;
 				DYLIB_CURRENT_VERSION = 1.4.16;
 				ENABLE_TESTABILITY = YES;
@@ -409,6 +406,7 @@
 					"$(PROJECT_DIR)/Sources/FTDI/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 2.1.0;
 				MODULEMAP_FILE = Sources/FTDI/include/FTDI.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_CFLAGS = "$(inherited)";
@@ -441,7 +439,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = WJ46M2X8E8;
+				DEVELOPMENT_TEAM = BZF32VC6NQ;
 				DYLIB_COMPATIBILITY_VERSION = 1.4.0;
 				DYLIB_CURRENT_VERSION = 1.4.16;
 				ENABLE_TESTABILITY = YES;
@@ -466,6 +464,7 @@
 					"$(PROJECT_DIR)/Sources/FTDI/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 2.1.0;
 				MODULEMAP_FILE = Sources/FTDI/include/FTDI.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_CFLAGS = "$(inherited)";
