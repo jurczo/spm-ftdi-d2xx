@@ -406,7 +406,7 @@
 					"$(PROJECT_DIR)/Sources/FTDI/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				MODULEMAP_FILE = Sources/FTDI/include/FTDI.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_CFLAGS = "$(inherited)";
@@ -464,7 +464,7 @@
 					"$(PROJECT_DIR)/Sources/FTDI/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.1.0;
+				MARKETING_VERSION = 2.2.0;
 				MODULEMAP_FILE = Sources/FTDI/include/FTDI.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_CFLAGS = "$(inherited)";

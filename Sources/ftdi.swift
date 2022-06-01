@@ -111,14 +111,21 @@ public func configure(_ handle: FT_HANDLE, using configuration: Configuration) t
 //MARK: - Send to Device
 public func write(_ handle: FT_HANDLE, bytes: Any, length: Int) throws {
     var written : DWORD = 0
-    var mutableBytes = bytes
+    guard let mutableBytes = bytes as? [UInt8] else { throw FTDIError.invalidWriteData}
+    
+    let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
+    pointer.initialize(repeating: 0, count: length)
+    defer {
+        pointer.deinitialize(count: length)
+        pointer.deallocate()
+    }
 
-    //TODO: Is it needed (it is shown in example from FTDI)
-    try? set(handle, rts: true) // Signal intent to send data to remote host
+    for (index, value) in mutableBytes.enumerated() {
+        pointer.advanced(by: index).pointee = value
+    }
 
-    let status = FT_Write(handle, &mutableBytes, DWORD(length), &written)
+    let status = FT_Write(handle, pointer, DWORD(length), &written)
     guard status == FT_OK else { throw FTDIError.raw(ftdiCode: status) }
-
     guard length == written else { throw FTDIError.invalidWrite }
 }
 
@@ -132,15 +139,14 @@ public func write(_ handle: FT_HANDLE, string: String) throws {
 }
 
 //MARK: - Receive from Device
-public func read(_ handle: FT_HANDLE, length: DWORD) throws -> [CChar] {
-    var buffer : [CChar] = .init(repeating: 0, count: 256) //FIXME: maybe use the length instead of fixed length
+public func read(_ handle: FT_HANDLE, length: DWORD) throws -> [UInt8] {
+    var buffer : [UInt8] = .init(repeating: 0, count: Int(length))
     var received : DWORD = 0
 
     let status = FT_Read(handle, &buffer, length, &received)
     guard status == FT_OK else {
         throw FTDIError.raw(ftdiCode: status)
     }
-
     return buffer
 }
 
@@ -177,7 +183,6 @@ public func readSync(_ handle : FT_HANDLE, eventHandle eh: inout EVENT_HANDLE, o
 
     status = FT_GetStatus(handle, &rx, &tx, &event)
     guard status == FT_OK else { throw FTDIError.raw(ftdiCode: status) }
-
     if isModemEvent(event) {
         var state : DWORD = 0
         status = FT_GetModemStatus(handle, &state)
